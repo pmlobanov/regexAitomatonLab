@@ -276,14 +276,14 @@ public class RussianPostalCodeAutomaton extends DFA {
         ));
 
         // s24 переходы
-        addTransitions(states.get("s10"), Map.of(
+        addTransitions(states.get("s24"), Map.of(
                 '6', states.get("s26"),
                 '7', states.get("s26"),
                 '8', states.get("s26")
         ));
 
         // s25 переходы
-        addTransitions(states.get("s10"), Map.of(
+        addTransitions(states.get("s25"), Map.of(
                 '5', states.get("s26"),
                 '6', states.get("s26"),
                 '7', states.get("s26"),
