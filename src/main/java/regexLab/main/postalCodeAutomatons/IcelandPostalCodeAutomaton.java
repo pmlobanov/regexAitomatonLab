@@ -6,6 +6,8 @@ import automaton.State;
 import java.util.HashMap;
 import java.util.Map;
 
+
+//класс обертка для исландского автомата.
 public class IcelandPostalCodeAutomaton extends DFA {
 
     public IcelandPostalCodeAutomaton() {

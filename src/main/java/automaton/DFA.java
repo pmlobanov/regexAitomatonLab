@@ -113,7 +113,10 @@ public class DFA {
         Random random = new Random();
         StringBuilder result = new StringBuilder();
         State currentState = startState;
-        while(!currentState.isAccepting()){
+        while(!currentState.getTransitions().isEmpty()){
+            if(currentState.isAccepting()){
+                if(random.nextInt(0,10) >= 5) break;
+            }
             //получаем список преерходов
             var transitions = currentState.getTransitions().keySet().toArray();
             // выбираем рандомное
