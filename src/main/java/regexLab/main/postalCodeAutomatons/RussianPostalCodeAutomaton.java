@@ -46,8 +46,12 @@ public class RussianPostalCodeAutomaton extends DFA {
                 '4', states.get("s7"),
                 '5', states.get("s8"),
                 '7', states.get("s9"),
-                '8', states.get("s10"),
-                '6', states.get("s19")
+                '8', states.get("s13"),
+                '6', states.get("s19"),
+                '1', states.get("s19"),
+                '2', states.get("s19"),
+                '3', states.get("s19"),
+                '9', states.get("s19")
         ));
 
         // s2 переходы

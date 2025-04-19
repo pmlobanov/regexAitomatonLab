@@ -19,7 +19,7 @@ public class USZipCodeAutomaton extends DFA {
         states.put("s0", getStartState());
 
         // Создаем остальные состояния (s1-s9)
-        for (int i = 1; i <= 21; i++) {
+        for (int i = 1; i <= 22; i++) {
             if (i != 18){
                 State state = new State("s" + i, false);
                 states.put("s" + i, state);
@@ -34,9 +34,9 @@ public class USZipCodeAutomaton extends DFA {
         addState(s18);
 
         // Создаем состояние s10 (принимающее)
-        State s22 = new State("s22", true);
-        states.put("s22", s22);
-        addState(s22);
+        State s23 = new State("s23", true);
+        states.put("s23", s23);
+        addState(s23);
 
         // 3. Добавляем переходы между состояниями
         // s0 переходы
@@ -49,8 +49,8 @@ public class USZipCodeAutomaton extends DFA {
                 '3', states.get("s6"),
                 '2', states.get("s7"),
                 '1', states.get("s8"),
-                '0', states.get("s8"),
-                '5', states.get("s8")
+                '0', states.get("s9"),
+                '5', states.get("s10")
         ));
 
         // s1 переходы
@@ -317,6 +317,19 @@ public class USZipCodeAutomaton extends DFA {
                 '7', states.get("s22"),
                 '8', states.get("s22"),
                 '9', states.get("s22")
+        ));
+
+        addTransitions(states.get("s22"), Map.of(
+                '0', states.get("s23"),
+                '1', states.get("s23"),
+                '2', states.get("s23"),
+                '3', states.get("s23"),
+                '4', states.get("s23"),
+                '5', states.get("s23"),
+                '6', states.get("s23"),
+                '7', states.get("s23"),
+                '8', states.get("s23"),
+                '9', states.get("s23")
         ));
 
 

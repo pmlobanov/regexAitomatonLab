@@ -23,7 +23,7 @@ public class ConsoleInterface {
 
     // String generator for creating valid postal codes
     private static final int MAX_GENERATION_LENGTH = 10;
-    private static final int DEFAULT_GENERATION_COUNT = 5;
+    private static final int DEFAULT_GENERATION_COUNT = 1;
 
     public static void main(String[] args) {
         boolean running = true;
