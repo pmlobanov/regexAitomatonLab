@@ -13,6 +13,7 @@ import java.util.Set;
 public class DFA {
     private State startState;
     private Set<State> states;
+    private Set<Character> alphabet;
 
 
     /**
@@ -23,6 +24,7 @@ public class DFA {
     public DFA(State startState) {
         this.startState = startState;
         this.states = new HashSet<>();
+        this.alphabet = new HashSet<>();
         addState(startState);
     }
 
@@ -33,6 +35,7 @@ public class DFA {
      */
     public void addState(State state) {
         states.add(state);
+
     }
 
     /**
@@ -43,9 +46,9 @@ public class DFA {
      */
     public boolean accepts(String input) {
         State currentState = startState;
-
         for (int i = 0; i < input.length(); i++) {
             char symbol = input.charAt(i);
+            if(!alphabet.contains(symbol)) return false;
             currentState = currentState.getNextState(symbol);
 
             if (currentState == null) {
@@ -79,7 +82,12 @@ public class DFA {
         for (int i = 0; i < input.length(); i++) {
             char symbol = input.charAt(i);
             State nextState = currentState.getNextState(symbol);
-
+            if (!alphabet.contains(symbol)){
+                trace.append("Rejected at position ").append(i).append(" Symbol: ")
+                        .append(symbol).append(" is not from alphabet of this automata: ")
+                        .append(alphabet.toString()).append("\n");
+                return trace.toString();
+            }
             if (nextState == null) {
                 trace.append("Rejected at position ").append(i)
                         .append(": No transition from ").append(currentState)
@@ -93,6 +101,13 @@ public class DFA {
             currentState = nextState;
         }
 
+        if (input.isEmpty()) {
+            trace.append("Rejected at position ").append(currentState)
+                    .append(": No transition from ").append(currentState)
+                    .append(" on symbol '").append("empty symbol").append("'\n");
+            return trace.toString();
+        }
+
         if (currentState.isAccepting()) {
             trace.append("Accepted in state ").append(currentState);
         } else {
@@ -104,6 +119,9 @@ public class DFA {
 
     // Вспомогательный метод для добавления нескольких переходов
     protected void addTransitions(State fromState, Map<Character, State> transitions) {
+        this.alphabet.addAll(
+                transitions.keySet()
+        );
         for (Map.Entry<Character, State> entry : transitions.entrySet()) {
             fromState.addTransition(entry.getKey(), entry.getValue());
         }

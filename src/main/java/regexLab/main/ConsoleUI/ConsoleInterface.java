@@ -78,9 +78,9 @@ public class ConsoleInterface {
 
         DFA selectedAutomaton = getAutomatonByChoice(countryChoice);
         String countryName = getCountryNameByChoice(countryChoice);
-
+        scanner.nextLine();
         System.out.print("Enter a " + countryName + " postal code to validate: ");
-        String postalCode = scanner.next();
+        String postalCode = scanner.nextLine();
 
         boolean isValid = selectedAutomaton.accepts(postalCode);
         System.out.println("Result: The postal code '" + postalCode + "' is " +
